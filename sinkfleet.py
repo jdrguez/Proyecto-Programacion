@@ -56,58 +56,48 @@ def show_board(board: list[list[str]]) -> None:
 
 board = generate_board()
 
-
-
-FILAS = 10
-COLUMNAS = 10
-JUGADOR = input("Introduzca su nombre")
-
-#Imprimir el tablero
-board = board
+PLAYER = input("Introduzca su nombre: ")
+COLUMNS = 10
+ROWS = 10
+# Imprimir el tablero
 letter = "A"
 
-for row in range(FILAS):
+for row in board:
     print(f"{letter} ", end=" ")
-    letter = chr(ord(letter)+1)
-    for colum in range(COLUMNAS):
-        board[row].append(UNEXPLORED)
+    letter = chr(ord(letter) + 1)
+    for item in row:
         print(f'[{UNEXPLORED:2s}]', end="")
     print()
 
 print("  ", end="")
-for num in range(1, COLUMNAS + 1):
+for num in range(1, COLUMNS + 1):
     print(f' {num:3d} ', end="")
 print()
 
 
+print(f'Este es el mar del jugador {PLAYER}')
 
-print(f'Este es el mar del jugador {JUGADOR}')
 
-
-print(f'Es necesario que pongas tus coordenadas para disparar {JUGADOR}')
+print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
 
 # Este es el ciclo infinito para pedir las coordenadas
-limits_board = colum >= 0 and colum <= COLUMNAS - 1 and row >= 0 and row <= FILAS - 1
-
 
 while True:
     letter_row = input("Ingresa la letra de la fila y como aparece en el tablero: ").upper()
-    y = letter_row
     if len(letter_row) != 1:
         print("Debes ingresar únicamente una letra")
         continue
     y = ord(letter_row) - 65
-    if colum >= 0 and colum <= COLUMNAS - 1 and row >= 0 and row <= FILAS - 1:
+    if y >= 0 and y <= COLUMNS and y >= 0 and y <= ROWS:
         break
     else:
         print("Fila inválida")
 
 while True:
-    letter_colum = int(input("Ingresa el numero de la columna: "))
-    x = letter_colum
-    if x >= 0 and x <= COLUMNAS - 1 and y >= 0 and y <= FILAS - 1:
-        x = x - 1
+    x = int(input("Ingresa el numero de la columna: "))
+    if x >= 0 and x <= COLUMNS and y >= 0 and y <= ROWS:
         break
     else:
         print("Columna inválida")
 
+print(f'El jugador {PLAYER} ha elegido las cordenadas {letter_row}:{x}')
