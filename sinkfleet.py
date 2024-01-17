@@ -59,6 +59,8 @@ board = generate_board()
 PLAYER = input("Introduzca su nombre: ")
 COLUMNS = 10
 ROWS = 10
+SCORE = 10
+
 # Imprimir el tablero
 letter = "A"
 
@@ -101,3 +103,9 @@ while True:
         print("Columna inválida")
 
 print(f'El jugador {PLAYER} ha elegido las cordenadas {letter_row}:{x}')
+
+for i in range(len(board)):
+    for j in range(len(board[i])):
+        if board[y][x] == isinstance(board[y][x], list):
+            print(WATER)
+    print()
