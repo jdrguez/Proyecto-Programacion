@@ -58,7 +58,7 @@ PLAYER = input("Introduzca su nombre: ")
 size = len(board)
 score = 0
 item = UNEXPLORED
-second_board = [[item for _ in range(size)]for _ in range(size)]
+second_board = [[item for _ in range(size)] for _ in range(size)]
 touched_ships = []
 letter = "A"
 letter_pos = 0
@@ -67,24 +67,22 @@ turn = 0
 while True:
     turn += 1
     for row in second_board:
-        print(f"{letter} ", end=" ")
+        print(f"{letter}|", end=" ")
         if letter == 'J':
             letter = 'A'
             pass
         else:
             letter = chr(ord(letter) % 65 + 66)
         for item in row:
-            print(f'[{item:2s}]', end="")
+            print(f'{item:2s}', end="")
         print()
 
     print("  ", end="")
     for num in range(1, size + 1):
-        print(f' {num:3d} ', end="")
+        print(f' {num} ', end="")
     print()
 
-
     print(f'Este es el mar del jugador {PLAYER}')
-
 
     print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
 
@@ -94,42 +92,42 @@ while True:
     if len(letter_row) != 1:
         print('ERROR: mas de un elemento')
         continue
-    
+
     order_letter = ord(letter_row) - 65
-    
+
     order_number = int(input("Ingresa el numero: ")) - 1
     if order_number > 10:
         print('ERROR: Numero incorrecto')
         continue
-    
+
     # Validar las posiciones para los colores
-        
+
     if board[order_letter][order_number] == EMPTY:
-            advise = "AGUA"
-            score -= 1
-            second_board[order_letter][order_number] = WATER
+        advise = "AGUA"
+        score -= 1
+        second_board[order_letter][order_number] = WATER
     elif board[order_letter][order_number] == UNEXPLORED:
-            advise = "AGUA"
-            score -= 1
-            second_board[order_letter][order_number] = WATER
+        advise = "AGUA"
+        score -= 1
+        second_board[order_letter][order_number] = WATER
     elif board[order_letter][order_number] == WATER:
-            advise= "Ya habías disparado a esa posición. AGUA"
-            score -= 1
+        advise = "Ya habías disparado a esa posición. AGUA"
+        score -= 1
     else:
-            touched_ships.append(board[order_letter][order_number])
-            ship_id = board[order_letter][order_number]
-            ship_size = int(ship_id[:-1])
-            if touched_ships.count(ship_id) == ship_size:
-                advise = f"TOCADO Y HUNDIDO EL BARCO {ship_id}"
-                score += 4 * ship_size  
-                second_board[order_letter][order_number] = SUNKEN
-                touched_ships.remove(ship_id)
-            else:
-                advise = "TOCADO"
-                score += 2 * ship_size
-                second_board[order_letter][order_number] = TOUCHED
-    
-    
+        touched_ships.append(board[order_letter][order_number])
+        ship_id = board[order_letter][order_number]
+        ship_size = int(ship_id[:-1])
+        if touched_ships.count(ship_id) == ship_size:
+            advise = f"TOCADO Y HUNDIDO EL BARCO {ship_id}"
+            score += 4 * ship_size
+            second_board[order_letter][order_number] = SUNKEN
+            touched_ships.remove(ship_id)
+        else:
+            advise = "TOCADO"
+            score += 2 * ship_size
+            second_board[order_letter][order_number] = TOUCHED
+
     show_board(board)
-    print(board)
-    print(f'{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total de {score} puntos')
+    print(
+        f'{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total de {score} puntos'
+    )
