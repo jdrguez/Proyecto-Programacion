@@ -53,59 +53,83 @@ def show_board(board: list[list[str]]) -> None:
 
 # TU CÓDIGO DESDE AQUÍ HACIA ABAJO
 # ↓↓↓↓↓↓↓↓↓
-
 board = generate_board()
-
 PLAYER = input("Introduzca su nombre: ")
-COLUMNS = 10
-ROWS = 10
-SCORE = 10
-
-# Imprimir el tablero
+size = len(board)
+score = 0
+item = UNEXPLORED
+second_board = [[item for _ in range(size)]for _ in range(size)]
+touched_ships = []
 letter = "A"
-
-for row in board:
-    print(f"{letter} ", end=" ")
-    letter = chr(ord(letter) + 1)
-    for item in row:
-        print(f'[{UNEXPLORED:2s}]', end="")
-    print()
-
-print("  ", end="")
-for num in range(1, COLUMNS + 1):
-    print(f' {num:3d} ', end="")
-print()
-
-
-print(f'Este es el mar del jugador {PLAYER}')
-
-
-print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
-
-# Este es el ciclo infinito para pedir las coordenadas
+letter_pos = 0
+turn = 0
 
 while True:
+    turn += 1
+    for row in second_board:
+        print(f"{letter} ", end=" ")
+        if letter == 'J':
+            letter = 'A'
+            pass
+        else:
+            letter = chr(ord(letter) % 65 + 66)
+        for item in row:
+            print(f'[{item:2s}]', end="")
+        print()
+
+    print("  ", end="")
+    for num in range(1, size + 1):
+        print(f' {num:3d} ', end="")
+    print()
+
+
+    print(f'Este es el mar del jugador {PLAYER}')
+
+
+    print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
+
+    # pedir las coordenadas
+
     letter_row = input("Ingresa la letra de la fila y como aparece en el tablero: ").upper()
     if len(letter_row) != 1:
-        print("Debes ingresar únicamente una letra")
+        print('ERROR: mas de un elemento')
         continue
-    y = ord(letter_row) - 65
-    if y >= 0 and y <= COLUMNS and y >= 0 and y <= ROWS:
-        break
+    
+    order_letter = ord(letter_row) - 65
+    
+    order_number = int(input("Ingresa el numero: ")) - 1
+    if order_number > 10:
+        print('ERROR: Numero incorrecto')
+        continue
+    
+    # Validar las posiciones para los colores
+        
+    if board[order_letter][order_number] == EMPTY:
+            advise = "AGUA"
+            score -= 1
+            second_board[order_letter][order_number] = WATER
+    elif board[order_letter][order_number] == UNEXPLORED:
+            advise = "AGUA"
+            score -= 1
+            second_board[order_letter][order_number] = WATER
+    elif board[order_letter][order_number] == WATER:
+            advise= "Ya habías disparado a esa posición. AGUA"
+            score -= 1
     else:
-        print("Fila inválida")
-
-while True:
-    x = int(input("Ingresa el numero de la columna: "))
-    if x >= 0 and x <= COLUMNS and y >= 0 and y <= ROWS:
-        break
-    else:
-        print("Columna inválida")
-
-print(f'El jugador {PLAYER} ha elegido las cordenadas {letter_row}:{x}')
-
-for i in range(len(board)):
-    for j in range(len(board[i])):
-        if board[y][x] == isinstance(board[y][x], list):
-            print(WATER)
-    print()
+            touched_ships.append(board[order_letter][order_number])
+            ship_id = board[order_letter][order_number]
+            ship_size = int(ship_id[:-1])
+            if touched_ships.count(ship_id) == ship_size:
+                advise = f"TOCADO Y HUNDIDO EL BARCO {ship_id}"
+                score += 4 * ship_size  
+                second_board[order_letter][order_number] = SUNKEN
+                touched_ships.remove(ship_id)
+            else:
+                advise = "TOCADO"
+                score += 2 * ship_size
+                second_board[order_letter][order_number] = TOUCHED
+    
+    
+    show_board(board)
+    print(board)
+    print(f'{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total de {score} puntos')
