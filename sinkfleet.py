@@ -55,16 +55,29 @@ def show_board(board: list[list[str]]) -> None:
 # ↓↓↓↓↓↓↓↓↓
 board = generate_board()
 PLAYER = input("Introduzca su nombre: ")
-size = len(board)
+SIZE = len(board)
 score = 0
 item = UNEXPLORED
-second_board = [[item for _ in range(size)] for _ in range(size)]
+second_board = [[item for _ in range(SIZE)] for _ in range(SIZE)]
 touched_ships = []
 letter = "A"
 letter_pos = 0
 turn = 0
+TOTAL_SHIPS = 5
+end_game = True
 
-while True:
+print(
+    r''' 
+██╗░░██╗██╗░░░██╗███╗░░██╗██████╗░██╗██████╗░  ██╗░░░░░░█████╗░  ███████╗██╗░░░░░░█████╗░████████╗░█████╗░
+██║░░██║██║░░░██║████╗░██║██╔══██╗██║██╔══██╗  ██║░░░░░██╔══██╗  ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔══██╗
+███████║██║░░░██║██╔██╗██║██║░░██║██║██████╔╝  ██║░░░░░███████║  █████╗░░██║░░░░░██║░░██║░░░██║░░░███████║
+██╔══██║██║░░░██║██║╚████║██║░░██║██║██╔══██╗  ██║░░░░░██╔══██║  ██╔══╝░░██║░░░░░██║░░██║░░░██║░░░██╔══██║
+██║░░██║╚██████╔╝██║░╚███║██████╔╝██║██║░░██║  ███████╗██║░░██║  ██║░░░░░███████╗╚█████╔╝░░░██║░░░██║░░██║
+╚═╝░░╚═╝░╚═════╝░╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝  ╚═╝░░░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝'''
+)
+
+print()
+while end_game:
     turn += 1
     for row in second_board:
         print(f"{letter}|", end=" ")
@@ -78,7 +91,7 @@ while True:
         print()
 
     print("  ", end="")
-    for num in range(1, size + 1):
+    for num in range(1, SIZE + 1):
         print(f' {num} ', end="")
     print()
 
@@ -86,19 +99,25 @@ while True:
 
     print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
 
+    print('Si quieres abandonar el juego pulsa Q')
     # pedir las coordenadas
+    player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
+    if len(player_option) < 2:
+        print('Te falta una coordenadas')
+        player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
 
-    letter_row = input("Ingresa la letra de la fila y como aparece en el tablero: ").upper()
-    if len(letter_row) != 1:
+    if len(player_option) > 2:
         print('ERROR: mas de un elemento')
-        continue
+        player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
 
-    order_letter = ord(letter_row) - 65
+    letter_row = player_option[:1]
+    order_number = int(player_option[1:]) - 1
 
-    order_number = int(input("Ingresa el numero: ")) - 1
     if order_number > 10:
         print('ERROR: Numero incorrecto')
-        continue
+        player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
+
+    order_letter = ord(letter_row) - 65
 
     # Validar las posiciones para los colores
 
@@ -114,20 +133,59 @@ while True:
         advise = "Ya habías disparado a esa posición. AGUA"
         score -= 1
     else:
-        touched_ships.append(board[order_letter][order_number])
         ship_id = board[order_letter][order_number]
+        touched_ships.append(ship_id)
         ship_size = int(ship_id[:-1])
         if touched_ships.count(ship_id) == ship_size:
-            advise = f"TOCADO Y HUNDIDO EL BARCO {ship_id}"
-            score += 4 * ship_size
-            second_board[order_letter][order_number] = SUNKEN
-            touched_ships.remove(ship_id)
+            TOTAL_SHIPS -= 1
+            for i_pos, i in enumerate(second_board):
+                for j_pos, j in enumerate(i):
+                    if j == TOUCHED and ship_id in board[i_pos][j_pos]:
+                        advise = f"TOCADO Y HUNDIDO EL BARCO {ship_id}"
+                        score += 4 * ship_size
+                        second_board[i_pos][j_pos] = SUNKEN
+                        second_board[order_letter][order_number] = SUNKEN
+                        touched_ships.remove(ship_id)
+
         else:
             advise = "TOCADO"
             score += 2 * ship_size
             second_board[order_letter][order_number] = TOUCHED
 
+    # Validar si el score baja igualarlo a 0
+    if score < 0:
+        score = 0
+
     show_board(board)
     print(
-        f'{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total de {score} puntos'
+        f'''{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total 
+        de {score} puntos'''
+    )
+    if TOTAL_SHIPS == 0:
+        end_game = False
+
+if not end_game:
+    for row in second_board:
+        print(f"{letter}|", end=" ")
+        if letter == 'J':
+            letter = 'A'
+            pass
+        else:
+            letter = chr(ord(letter) % 65 + 66)
+        for item in row:
+            print(f'{item:2s}', end="")
+        print()
+
+    print("  ", end="")
+    for num in range(1, SIZE + 1):
+        print(f' {num} ', end="")
+    print()
+    print(
+        r'''
+██╗░░██╗░█████╗░░██████╗  ░██████╗░░█████╗░███╗░░██╗░█████╗░██████╗░░█████╗░
+██║░░██║██╔══██╗██╔════╝  ██╔════╝░██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔══██╗
+███████║███████║╚█████╗░  ██║░░██╗░███████║██╔██╗██║███████║██║░░██║██║░░██║
+██╔══██║██╔══██║░╚═══██╗  ██║░░╚██╗██╔══██║██║╚████║██╔══██║██║░░██║██║░░██║
+██║░░██║██║░░██║██████╔╝  ╚██████╔╝██║░░██║██║░╚███║██║░░██║██████╔╝╚█████╔╝
+╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░░╚════╝░'''
     )
