@@ -53,6 +53,11 @@ def show_board(board: list[list[str]]) -> None:
 
 # TU CÓDIGO DESDE AQUÍ HACIA ABAJO
 # ↓↓↓↓↓↓↓↓↓
+TOTAL_SHIPS = 5
+HARCORE = False
+DEFAULT = True
+HARCORE_TURNS = 25
+END_GAME_FAILED = False
 board = generate_board()
 PLAYER = input("Introduzca su nombre: ")
 SIZE = len(board)
@@ -63,7 +68,7 @@ touched_ships = []
 letter = "A"
 letter_pos = 0
 turn = 0
-TOTAL_SHIPS = 5
+
 end_game = True
 
 print(
@@ -75,6 +80,28 @@ print(
 ██║░░██║╚██████╔╝██║░╚███║██████╔╝██║██║░░██║  ███████╗██║░░██║  ██║░░░░░███████╗╚█████╔╝░░░██║░░░██║░░██║
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝  ╚═╝░░░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝'''
 )
+
+
+difficulty_decision = int(
+    input(
+        '''Antes de empezar tu aventura, debes decidir que modo de juego tomar.
+          Te doy las siguientes opciones:
+          1. Modo Fácil
+          2. Modo Harcore
+          Dime cual será tu tortura:   '''
+    )
+)
+
+match difficulty_decision:
+    case 1:
+        DEFAULT
+        print('Te gusta disfrutar de una aventura sencilla y que tengas el control')
+    case 2:
+        HARCORE = True
+        print('Ah sí, eres valiente. Recuerda el cementerio está lleno de valientes')
+    case _:
+        input('Introduzca un número válido')
+
 
 print()
 while end_game:
@@ -95,13 +122,22 @@ while end_game:
         print(f' {num} ', end="")
     print()
 
+    if HARCORE:
+        if turn > HARCORE_TURNS:
+            END_GAME_FAILED = True
+            break
+
     print(f'Este es el mar del jugador {PLAYER}')
 
     print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
 
-    print('Si quieres abandonar el juego pulsa Q')
     # pedir las coordenadas
-    player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
+    player_option = input(
+        'Ingresa tus coordenadas (A1,C3,etc...)(Si quieres abandonar pulsa Q): '
+    ).upper()
+    if player_option == 'Q':
+        print(f'Has abandonado. Tu puntuación ha sido de {score}')
+        break
     if len(player_option) < 2:
         print('Te falta una coordenadas')
         player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
@@ -156,7 +192,6 @@ while end_game:
     if score < 0:
         score = 0
 
-    show_board(board)
     print(
         f'''{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total 
         de {score} puntos'''
@@ -188,4 +223,18 @@ if not end_game:
 ██╔══██║██╔══██║░╚═══██╗  ██║░░╚██╗██╔══██║██║╚████║██╔══██║██║░░██║██║░░██║
 ██║░░██║██║░░██║██████╔╝  ╚██████╔╝██║░░██║██║░╚███║██║░░██║██████╔╝╚█████╔╝
 ╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░░╚════╝░'''
+    )
+
+
+if END_GAME_FAILED:
+    print('Tus intentos han acabado, lo siento.')
+
+    print(
+        r''' 
+██╗░░██╗░█████╗░░██████╗  ██████╗░███████╗██████╗░██████╗░██╗██████╗░░█████╗░
+██║░░██║██╔══██╗██╔════╝  ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗
+███████║███████║╚█████╗░  ██████╔╝█████╗░░██████╔╝██║░░██║██║██║░░██║██║░░██║
+██╔══██║██╔══██║░╚═══██╗  ██╔═══╝░██╔══╝░░██╔══██╗██║░░██║██║██║░░██║██║░░██║
+██║░░██║██║░░██║██████╔╝  ██║░░░░░███████╗██║░░██║██████╔╝██║██████╔╝╚█████╔╝
+╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░  ╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝╚═════╝░░╚════╝░'''
     )
