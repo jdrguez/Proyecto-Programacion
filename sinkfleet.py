@@ -81,27 +81,104 @@ print(
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝  ╚═╝░░░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝'''
 )
 
-
-difficulty_decision = int(
-    input(
-        '''Antes de empezar tu aventura, debes decidir que modo de juego tomar.
-          Te doy las siguientes opciones:
-          1. Modo Fácil
-          2. Modo Harcore
-          Dime cual será tu tortura:   '''
-    )
+print(
+    r'''
+░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░░░░░░░░╠▓░░░░░░░░░░░░░░░▀▄▀░░░░░░░
+░░░░▄▀▀▄█▄░▀▄░░▓╬▓▓▓░░░░░░░░▓╬▓▓▓░░░░░░▀▄▀░░░░░░░░░░░░░░
+░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░░░░░░▓▓╬▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░▐▌░░░░▀▀███████▀░░░▀▀███████▀░░░░░░░░░░░░░░░░░░░░░
+▒▒▄██████▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+'''
 )
 
-match difficulty_decision:
-    case 1:
-        DEFAULT
-        print('Te gusta disfrutar de una aventura sencilla y que tengas el control')
-    case 2:
-        HARCORE = True
-        print('Ah sí, eres valiente. Recuerda el cementerio está lleno de valientes')
-    case _:
-        input('Introduzca un número válido')
+# Decisión de dificultad
+while True:
+    difficulty_decision = input(
+        '''Antes de empezar tu aventura, debes decidir que modo de juego tomar.
+            Te doy las siguientes opciones:
+            1. Modo Fácil
+            2. Modo Harcore
+            Dime cual será tu tortura:   '''
+    )
+    match difficulty_decision:
+        case '1':
+            DEFAULT
+            print('Te gusta disfrutar de una aventura sencilla y tener el control')
+            break
+        case '2':
+            HARCORE = True
+            print('Ah sí, eres valiente. Recuerda el cementerio está lleno de valientes')
+            break
+        case _:
+            print('Introduzca un número válido:  ')
 
+
+print('Ya has decidio como jugar, ahora te falta que personalidad vas a tener')
+print('Las personalidades son las siguientes: ')
+
+print(
+    r'''
+▒▒▒▒▒▒▐███████▌
+▒▒▒▒▒▒▐░▀░▀░▀░▌
+▒▒▒▒▒▒▐▄▄▄▄▄▄▄▌
+▄▀▀▀█▒▐░▀▀▄▀▀░▌▒█▀▀▀▄
+▌▌▌▌▐▒▄▌░▄▄▄░▐▄▒▌▐▐▐▐
+
+Usurpador:
+Famoso contrabandista del Pacífico Sur especializado en robos de alta mar. La agilidad y su sangre fría son la clave del éxito en sus trabajos, aunque a veces peca de ser impulsivo. 
+'''
+)
+
+input('Pulsa cualquier botón para mostrar la siguiente personalidad: ')
+
+print(
+    r'''
+░░░▄▀▀▀▄▄▄▄▄▄▄▀▀▀▄░░░
+░░░█▒▒░░░░░░░░░▒▒█░░░
+────█░░█░░░░░█░░█░░░░
+─▄▄──█░░░▀█▀░░░█──▄▄─
+█░░█─▀▄░░░░░░░▄▀─█░░█
+
+Aventurero:
+Joven aventurero que surcó los mares en busca de aventuras y nuevos horizontes. Su inteligencia le ha salvado de todos los contratiempos que el océano le ha puesto delante.
+'''
+)
+
+input('Pulsa cualquier botón para mostrar la siguiente personalidad: ')
+
+print(
+    r'''
+░░░░░░░▄█▄▄▄█▄░░░░
+▄▀░░░░▄▌─▄─▄─▐▄░░░░▀▄
+█▄▄█░░▀▌─▀─▀─▐▀░░█▄▄█
+░▐▌░░░░▀▀███▀▀░░░░▐▌
+████░▄█████████▄░████
+
+Asesino:
+Mitad robot ladron, mitad asesinó a sangre fría, le gusta rebanar cabezas a los que se le cruzan en su camino hacia su botín.'''
+)
+
+input('Pulsa cualquier botón para continuar: ')
+
+while True:
+    personality = input('Elige tu personalidad entre estas leyendas del mar: ').lower()
+
+    match personality:
+        case 'usurpador':
+            recomend = 'tener sagre fría y agilidad.'
+            break
+        case 'aventurero':
+            recomend = 'tener buena orientación y buena suerte.'
+            break
+        case 'asesino':
+            recomend = 'tener sed de sangre y bueno en combate.'
+            break
+        case _:
+            print('ERROR: No has elegido personalidad')
+
+print(f'Has elegido {personality.capitalize()}. Buena decisión, esta se basa en {recomend}')
+
+print('Buena suerte, que empiece el juego')
 
 print()
 while end_game:
@@ -132,26 +209,28 @@ while end_game:
     print(f'Es necesario que pongas tus coordenadas para disparar {PLAYER}')
 
     # pedir las coordenadas
-    player_option = input(
-        'Ingresa tus coordenadas (A1,C3,etc...)(Si quieres abandonar pulsa Q): '
-    ).upper()
+    while True:
+        player_option = input(
+            'Ingresa tus coordenadas (A1,C3,etc...)(Si quieres abandonar pulsa Q): '
+        ).upper()
+
+        if player_option == 'Q':
+            print(f'Has abandonado. Tu puntuación ha sido de {score}')
+            break
+        elif len(player_option) < 1:
+            print('Te falta una coordenadas')
+        elif len(player_option) > 3:
+            print('ERROR: mas de un elemento')
+        else:
+            if player_option[1:].isalpha():
+                print('ERROR: Has introducido dos letras')
+            else:
+                letter_row = player_option[:1]
+                order_number = int(player_option[1:]) - 1
+                break
+
     if player_option == 'Q':
-        print(f'Has abandonado. Tu puntuación ha sido de {score}')
         break
-    if len(player_option) < 2:
-        print('Te falta una coordenadas')
-        player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
-
-    if len(player_option) > 2:
-        print('ERROR: mas de un elemento')
-        player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
-
-    letter_row = player_option[:1]
-    order_number = int(player_option[1:]) - 1
-
-    if order_number > 10:
-        print('ERROR: Numero incorrecto')
-        player_option = input('Ingresa tus coordenadas (A1,C3,etc...): ').upper()
 
     order_letter = ord(letter_row) - 65
 
@@ -168,6 +247,12 @@ while end_game:
     elif board[order_letter][order_number] == WATER:
         advise = "Ya habías disparado a esa posición. AGUA"
         score -= 1
+    elif second_board[order_letter][order_number] == TOUCHED:
+        advise = 'Ya has disparado ahí'
+        score -= 10
+    elif second_board[order_letter][order_number] == SUNKEN:
+        advise = 'El barco ya esta hundido'
+        score -= 40
     else:
         ship_id = board[order_letter][order_number]
         touched_ships.append(ship_id)
@@ -185,7 +270,7 @@ while end_game:
 
         else:
             advise = "TOCADO"
-            score += 2 * ship_size
+            score += 4 * ship_size
             second_board[order_letter][order_number] = TOUCHED
 
     # Validar si el score baja igualarlo a 0
@@ -196,8 +281,12 @@ while end_game:
         f'''{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. Teniendo un total 
         de {score} puntos'''
     )
+
     if TOTAL_SHIPS == 0:
         end_game = False
+
+    print(f''' Te quedan {TOTAL_SHIPS} barcos por hundir. Continua tu búsqueda ''')
+
 
 if not end_game:
     for row in second_board:
@@ -237,4 +326,14 @@ if END_GAME_FAILED:
 ██╔══██║██╔══██║░╚═══██╗  ██╔═══╝░██╔══╝░░██╔══██╗██║░░██║██║██║░░██║██║░░██║
 ██║░░██║██║░░██║██████╔╝  ██║░░░░░███████╗██║░░██║██████╔╝██║██████╔╝╚█████╔╝
 ╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░  ╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝╚═════╝░░╚════╝░'''
+    )
+
+    print(
+        r'''
+        ▄██████████████▄▐█▄▄▄▄█▌░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        ██████▌▄▌▄▐▐▌███▌▀▀██▀▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        ████▄█▌▄▌▄▐▐▌▀███▄▄█▌░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        ▄▄▄▄▄██████████████▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+'''
     )
