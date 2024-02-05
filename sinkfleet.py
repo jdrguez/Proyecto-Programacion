@@ -56,7 +56,7 @@ def show_board(board: list[list[str]]) -> None:
 TOTAL_SHIPS = 5
 HARCORE = False
 DEFAULT = True
-HARCORE_TURNS = 25
+HARCORE_TURNS = 35
 END_GAME_FAILED = False
 board = generate_board()
 PLAYER = input("Introduzca su nombre: ")
