@@ -253,8 +253,12 @@ while end_game:
         if player_option == 'Q':
             print(f'Has abandonado. Tu puntuación ha sido de {score}')
             break
-        elif len(player_option) < 1:
-            print('Te falta una coordenadas')
+        elif len(player_option) <= 1:
+            print('Te falta una coordenadas, pero esos ERRORES no se permiten en alta mar (Por defecto se cogerá A1)')
+            player_option = 'A1'
+            letter_row = player_option[:1]
+            order_number = int(player_option[1:]) - 1
+            break
         elif len(player_option) > 3:
             print('ERROR: mas de un elemento')
         else:
@@ -321,7 +325,7 @@ while end_game:
             for i_pos, i in enumerate(second_board):
                 for j_pos, j in enumerate(i):
                     if j == TOUCHED and ship_id in board[i_pos][j_pos]:
-                        advise = f"TOCADO Y HUNDIDO EL BARCO {ship_id}"
+                        advise = f"TOCADO Y HUNDIDO EL BARCO {ship_size}"
                         if personality == 'asesino':
                             score += 4 * ship_size * ASSASIN
                         elif personality == 'usurpador':
@@ -382,7 +386,8 @@ if not end_game:
 ██║░░██║██║░░██║██████╔╝  ╚██████╔╝██║░░██║██║░╚███║██║░░██║██████╔╝╚█████╔╝
 ╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░░╚════╝░'''
     )
-    print(r'''_________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶__________________
+    print(r'''
+            _________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶__________________
             _____________ ¶¶¶________________¶¶¶_______________
             ___________¶¶______________________¶¶¶¶___________
             _________¶¶¶__________________________¶¶¶_________
@@ -412,6 +417,8 @@ if not end_game:
             ______________¶¶¶¶_____________¶¶¶¶¶______________
             ___________________¶¶¶¶¶¶¶¶¶¶¶¶___________________
 ''')
+    print(f'Has conseguido al final un total de {score} puntos. Felicidades!!')
+
 
 
 if END_GAME_FAILED:
