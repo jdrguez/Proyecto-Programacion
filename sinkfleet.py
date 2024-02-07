@@ -98,8 +98,8 @@ print(
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝  ╚═╝░░░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝'''
 )
 
-print(
-    r'''
+print(r'''
+      
 ░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░░░░░░░░╠▓░░░░░░░░░░░░░░░▀▄▀░░░░░░░
 ░░░░▄▀▀▄█▄░▀▄░░▓╬▓▓▓░░░░░░░░▓╬▓▓▓░░░░░░▀▄▀░░░░░░░░░░░░░░
 ░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░░░░░░▓▓╬▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░
@@ -110,7 +110,7 @@ print(
 
 print(RULES)
 
-wild_card= input('Pulsa cualquier botón para continuar tu aventura: ')
+wild_card= input('Pulsa cualquier botón para continuar tu aventura:')
 
 # Decisión de dificultad
 while True:
