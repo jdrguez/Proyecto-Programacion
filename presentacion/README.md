@@ -33,7 +33,7 @@ Famoso contrabandista del Pacífico Sur especializado en robos de alta mar. La a
 
 <h4><li>Aventurero:</li></h4>
 Joven aventurero que surcó los mares en busca de aventuras y nuevos horizontes. Su inteligencia le ha salvado de todos los contratiempos que el océano le ha puesto delante.
-<p>El aventurero corresponde al modo de juego normal, ni se restan ni se suman puntos extras.</p>
+<p>El aventurero corresponde al modo de juego normal</p>
 
 <h4><li>Asesino:</li></h4>
 Robot mitad ladron, mitad asesinó a sangre fría, le gusta rebanar cabezas a los que se le cruzan en su camino hacia su botín.
