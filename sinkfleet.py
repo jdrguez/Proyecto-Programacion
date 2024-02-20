@@ -74,7 +74,7 @@ Reglas:
 
 #Pasivas de los personajes
 USURPER = 2
-ADVENTURE = 0
+ADVENTURE = -1
 ASSASIN = 2
 
 
@@ -166,7 +166,7 @@ print(
 Aventurero:
 Joven aventurero que surcó los mares en busca de aventuras y nuevos horizontes. Su inteligencia le ha salvado de todos los contratiempos que el océano le ha puesto delante.
 Pasiva: 
-No se te quitarán nunca puntos, pero tampoco se te darán puntos extras.
+Se te aplicará el juego por defecto.
 '''
 )
 
