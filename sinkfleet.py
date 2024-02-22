@@ -61,7 +61,7 @@ END_GAME_FAILED = False
 board = generate_board()
 PLAYER = input("Introduzca su nombre: ")
 SIZE = len(board)
-RULES = (f'''
+RULES = f'''
 Reglas:
 - El jugador tiene una cuadrícula de 10x10 en la que, de manera aleatoria, se colocan barcos de diferentes longitudes sin que se superpongan ni toquen los bordes.
 - El jugador tiene que intentar adivinar la ubicación de los barcos diciendo las coordenadas de un punto en la cuadrícula.
@@ -70,9 +70,9 @@ Reglas:
 - Si todas las partes de un barco han sido alcanzadas, se mostrará hundio con un icono {SUNKEN}.
 - El juego continúa hasta que todos los barcos hayan sido hundidos.
 - El jugador cuando haya hundido todos los barcos gana la partida.
-''')
+'''
 
-#Pasivas de los personajes
+# Pasivas de los personajes
 USURPER = 2
 ADVENTURE = -1
 ASSASIN = 2
@@ -98,7 +98,8 @@ print(
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝  ╚═╝░░░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝'''
 )
 
-print(r'''
+print(
+    r'''
       
 ░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░░░░░░░░╠▓░░░░░░░░░░░░░░░▀▄▀░░░░░░░
 ░░░░▄▀▀▄█▄░▀▄░░▓╬▓▓▓░░░░░░░░▓╬▓▓▓░░░░░░▀▄▀░░░░░░░░░░░░░░
@@ -110,7 +111,7 @@ print(r'''
 
 print(RULES)
 
-wild_card= input('Pulsa cualquier botón para continuar tu aventura:')
+wild_card = input('Pulsa cualquier botón para continuar tu aventura:')
 
 # Decisión de dificultad
 while True:
@@ -203,20 +204,30 @@ while True:
         case 'asesino':
             recomend = 'tener sed de sangre y bueno en combate.'
             break
+        case 'matraca':
+            recomend = 'te gustan los huevos de pascua. Toma tu premio.'
+            break
         case _:
             print('ERROR: No has elegido personalidad')
 
 print()
 print(f'Has elegido {personality.capitalize()}. Buena decisión, esta se basa en {recomend}')
 print()
-print(r'''
+
+if personality == 'matraca':
+    show_board(board)
+
+
+print(
+    r'''
 ██████╗░██╗░░░██╗███████╗███╗░░██╗░█████╗░  ░██████╗██╗░░░██╗███████╗██████╗░████████╗███████╗  ██╗██╗
 ██╔══██╗██║░░░██║██╔════╝████╗░██║██╔══██╗  ██╔════╝██║░░░██║██╔════╝██╔══██╗╚══██╔══╝██╔════╝  ██║██║
 ██████╦╝██║░░░██║█████╗░░██╔██╗██║███████║  ╚█████╗░██║░░░██║█████╗░░██████╔╝░░░██║░░░█████╗░░  ██║██║
 ██╔══██╗██║░░░██║██╔══╝░░██║╚████║██╔══██║  ░╚═══██╗██║░░░██║██╔══╝░░██╔══██╗░░░██║░░░██╔══╝░░  ╚═╝╚═╝
 ██████╦╝╚██████╔╝███████╗██║░╚███║██║░░██║  ██████╔╝╚██████╔╝███████╗██║░░██║░░░██║░░░███████╗  ██╗██╗
 ╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚══╝╚═╝░░╚═╝  ╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚══════╝  ╚═╝╚═╝
-''')
+'''
+)
 
 while end_game:
     turn += 1
@@ -241,20 +252,21 @@ while end_game:
             END_GAME_FAILED = True
             break
 
-    
     # pedir las coordenadas
     while True:
         player_option = input(
-        'Ingresa tus coordenadas (A1,C3,etc...)(Si quieres abandonar pulsa Q): '
+            'Ingresa tus coordenadas (A1,C3,etc...)(Si quieres abandonar pulsa Q): '
         ).upper()
-        
+
         print()
 
         if player_option == 'Q':
             print(f'Has abandonado. Tu puntuación ha sido de {score}')
             break
         elif len(player_option) <= 1:
-            print('Te falta una coordenadas, pero esos ERRORES no se permiten en alta mar (Por defecto se cogerá A1)')
+            print(
+                'Te falta una coordenadas, pero esos ERRORES no se permiten en alta mar (Por defecto se cogerá A1)'
+            )
             player_option = 'A1'
             letter_row = player_option[:1]
             order_number = int(player_option[1:]) - 1
@@ -341,7 +353,7 @@ while end_game:
             if personality == 'usurpador':
                 score += 2 * ship_size * USURPER
             elif personality == 'asesino':
-                score += 2 * ship_size *  ASSASIN
+                score += 2 * ship_size * ASSASIN
             else:
                 score += 2 * ship_size
             second_board[order_letter][order_number] = TOUCHED
@@ -352,7 +364,6 @@ while end_game:
 
     print(f'''{PLAYER.capitalize()} en su turno número {turn}, ha hecho {advise}. ''')
     print(f'Teniendo un total de {score} puntos.')
-   
 
     if TOTAL_SHIPS == 0:
         end_game = False
@@ -386,7 +397,8 @@ if not end_game:
 ██║░░██║██║░░██║██████╔╝  ╚██████╔╝██║░░██║██║░╚███║██║░░██║██████╔╝╚█████╔╝
 ╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░░╚════╝░'''
     )
-    print(r'''
+    print(
+        r'''
             _________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶__________________
             _____________ ¶¶¶________________¶¶¶_______________
             ___________¶¶______________________¶¶¶¶___________
@@ -416,9 +428,9 @@ if not end_game:
             __________¶¶¶¶_____________________¶¶_____________
             ______________¶¶¶¶_____________¶¶¶¶¶______________
             ___________________¶¶¶¶¶¶¶¶¶¶¶¶___________________
-''')
+'''
+    )
     print(f'Has conseguido al final un total de {score} puntos. Felicidades!!')
-
 
 
 if END_GAME_FAILED:
