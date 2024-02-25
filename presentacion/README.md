@@ -38,6 +38,7 @@ Famoso contrabandista del Pacífico Sur especializado en robos de alta mar. La a
 <p>El aventurero corresponde al modo de juego normal</p>
 
 <h4><li>Asesino:</li></h4>
+<img src="https://64.media.tumblr.com/ecc9e9dbfe09843f7d2f8e71e7046bce/f3e571e6c141ace6-f8/s1280x1920/e692b9407b02e5f935f05ca3c52e9149666fb6dd.pnj" width="200" height="200"align="left"/>
 Robot mitad ladron, mitad asesinó a sangre fría, le gusta rebanar cabezas a los que se le cruzan en su camino hacia su botín.
 <p>Si hundes un barco o lo tocas, se te recompensará con el doble de puntos correspondientes. Pero si fallas, se te quitará el doble también.
 </p>
