@@ -30,11 +30,11 @@ En este caso los barcos serán colocados aleatoriamente en el tablero de nuestro
 <h4><li>Usurpador:</li></h4>
 Famoso contrabandista del Pacífico Sur especializado en robos de alta mar. La agilidad y su sangre fría son la clave del éxito en sus trabajos, aunque a veces peca de ser impulsivo.
 <p>Este personaje te dará el doble de puntuación al tocar un barco, pero al hundirlo se te restaran 10 puntos.</p>
-<img src="https://64.media.tumblr.com/0144277060397fe1037c9ac5934a4bb2/2d3e6da05b03f234-a6/s1280x1920/dd144a6feaaeaca6f544a4810ca74c5c4a43f54f.pnj" />
+<img src="https://64.media.tumblr.com/0144277060397fe1037c9ac5934a4bb2/2d3e6da05b03f234-a6/s1280x1920/dd144a6feaaeaca6f544a4810ca74c5c4a43f54f.pnj" width="480" height="380"/>
 <h4><li>Aventurero:</li></h4>
 Joven aventurero que surcó los mares en busca de aventuras y nuevos horizontes. Su inteligencia le ha salvado de todos los contratiempos que el océano le ha puesto delante.
 <p>El aventurero corresponde al modo de juego normal</p>
-<img src="https://64.media.tumblr.com/97b0cbf7a853e36da4a414fd13d49f3f/76e32b6121a8fc41-ac/s1280x1920/e8375494980127a8e65b1066ea1bb74585652164.pnj" />
+<img src="https://64.media.tumblr.com/97b0cbf7a853e36da4a414fd13d49f3f/76e32b6121a8fc41-ac/s1280x1920/e8375494980127a8e65b1066ea1bb74585652164.pnj" width="480" height="380"/>
 <h4><li>Asesino:</li></h4>
 Robot mitad ladron, mitad asesinó a sangre fría, le gusta rebanar cabezas a los que se le cruzan en su camino hacia su botín.
 <p>Si hundes un barco o lo tocas, se te recompensará con el doble de puntos correspondientes. Pero si fallas, se te quitará el doble también.
