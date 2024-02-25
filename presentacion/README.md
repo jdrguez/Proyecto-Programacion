@@ -45,7 +45,7 @@ Robot mitad ladron, mitad asesinó a sangre fría, le gusta rebanar cabezas a lo
 
 
 
-<h2>Explicación del código:</h2>
+<br><h2>Explicación del código:</h2>
 <img src="images/Selección_001.png">
 En este fragmento del codigo es donde esta representada la elección de la dificultad cuando inicias la partida
 
