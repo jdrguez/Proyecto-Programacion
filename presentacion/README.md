@@ -41,3 +41,50 @@ Famoso contrabandista del Pacífico Sur especializado en robos de alta mar. La a
 Robot mitad ladron, mitad asesinó a sangre fría, le gusta rebanar cabezas a los que se le cruzan en su camino hacia su botín.
 <p>Si hundes un barco o lo tocas, se te recompensará con el doble de puntos correspondientes. Pero si fallas, se te quitará el doble también.
 </p>
+
+
+
+<h2>Explicación del código:</h2>
+<img src="images/Selección_001.png">
+En este fragmento del codigo es donde esta representada la elección de la dificultad cuando inicias la partida
+
+---
+
+<img src="images/Selección_002.png">
+En este fragmento de codigo es donde se consigue crear el menu de eleccion de personalidad donde cada una personalizara la partida de diversas formas
+
+---
+
+<img src="images/Selección_003.png">
+
+En este pequeño fragmento de codigo tenemos un EASTER EGG dedicado a la palabra favorita de nuestro profe Sergio, el cual se introducira en la seleccion de personalidades poniendo 'matraca' se mostrara un tablero con las posiciones de los barcos.
+
+---
+
+<img src="images/Selección_004.png">
+
+En este fragmento de codigo esta representado un añadido a la idea original que sergio nos dio del juego hundir la flota, un modo hardcore el cual seria tener una cantidad limitada de disparos para hundir los barcos, si se acabaran los intentos saltaria la pantalla de derrota
+
+---
+
+<img src="images/Selección_005.png">
+
+En este fragmento de codigo esta representado laforma de pedir las cordenadas que el jugador ponga, tambien hay una forma de salir del juego en caso de que no quisiera continuar, pulsando la Q
+
+---
+
+<img src="images/Selección_006.png">
+<img src="images/Selección_007.png">
+
+En estre fragmento de codigo esta representada la forma de validar las posiciones de los colores, sumar o restar los puntos, asi como un aviso por si decides disparar a la misma casilla, se le dara un mensaje al jugador de que esa casilla ya ha sido disparada
+
+---
+
+<img src="images/Selección_008.png">
+ 
+ Por último en este fragmento de codigo se representa la forma de igualar a 0 los puntos si estos baja por debajo de cero
+
+---
+
+Ademas, añadimos imagenes al juego para hacerlo mas colorido, como texto en ascci para ue se viera mejor  
+
