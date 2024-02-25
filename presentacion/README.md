@@ -86,5 +86,5 @@ En estre fragmento de codigo esta representada la forma de validar las posicione
 
 ---
 
-Ademas, añadimos imagenes al juego para hacerlo mas colorido, como texto en ascci para ue se viera mejor  
+Ademas, añadimos imagenes al juego para hacerlo mas colorido, como texto en ascci para que se viera mejor  
 
