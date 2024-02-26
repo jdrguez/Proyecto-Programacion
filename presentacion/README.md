@@ -64,7 +64,7 @@ En este pequeño fragmento de codigo tenemos un EASTER EGG dedicado a la palabra
 
 <img src="images/Selección_004.png">
 
-En este fragmento de codigo esta representado un añadido a la idea original que sergio nos dio del juego hundir la flota, un modo hardcore el cual seria tener una cantidad limitada de disparos para hundir los barcos, si se acabaran los intentos saltaria la pantalla de derrota
+En este fragmento de codigo esta representado un añadido a la idea original que Sergio nos dio del juego hundir la flota, un modo hardcore el cual seria tener una cantidad limitada de disparos para hundir los barcos, si se acabaran los intentos saltaria la pantalla de derrota
 
 ---
 
